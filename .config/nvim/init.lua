@@ -4,8 +4,9 @@
 -- Manage plugins with packer
 require('plugins')
 
--- Show line numbers
+-- Show line numbers, share line and sign column ("gutter")
 vim.o.number = true
+vim.o.signcolumn = "number"
 
 -- Tabs are 4 spaces
 vim.o.tabstop = 4
@@ -56,6 +57,9 @@ vim.keymap.set('n', '<Leader>x', ':x<Return>')
 vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
+
+-- Decrease idle timeout (for "cursor hold" events, sign column updates)
+vim.o.updatetime = 300  -- time in milliseconds
 
 -- vim-buftabline: always show buffer list
 vim.g.buftabline_show = 2
