@@ -57,7 +57,7 @@ vim.keymap.set('n', '<Leader>x', ':x<Return>')
 vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
-vim.keymap.set('n', '<Leader>c', ':cclose | lclose<Return>')
+vim.keymap.set('n', '<Leader>c', ':cclose | lclose<Return>', {silent = true})
 
 -- Decrease idle timeout (for "cursor hold" events, sign column updates)
 vim.o.updatetime = 300  -- time in milliseconds
