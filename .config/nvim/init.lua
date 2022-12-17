@@ -96,3 +96,4 @@ end
 local lsp_flags = { debounce_text_changes = 150 }
 local lspconfig = require('lspconfig')
 lspconfig.pyright.setup({on_attach = on_attach, flags = lsp_flags})
+lspconfig.rust_analyzer.setup({on_attach = on_attach, flags = lsp_flags})
