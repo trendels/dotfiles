@@ -6,4 +6,5 @@ return require('packer').startup(function(use)
   use 'ap/vim-buftabline'
   --use 'airblade/vim-gitgutter' -- TODO needs some configuration to be useable (color scheme)
   use 'neovim/nvim-lspconfig'
+  use 'fatih/vim-go'
 end)
