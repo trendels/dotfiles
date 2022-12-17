@@ -1,6 +1,9 @@
 -- NeoVim Lua Configuration
 -- See https://vonheikemen.github.io/devlog/tools/configuring-neovim-using-lua/
 
+-- Manage plugins with packer
+require('plugins')
+
 -- Show line numbers
 vim.o.number = true
 
@@ -17,6 +20,12 @@ vim.o.smartcase = true
 vim.o.list = true
 vim.o.listchars='trail:•,nbsp:•,tab:⇥ '
 vim.o.showbreak='↳'
+
+-- Allow navigating away from buffers with unsaved changes
+vim.o.hidden = true
+-- Switch between buffers with Ctrl-n/Ctrl-p
+vim.keymap.set('n', '<C-n>', ':bnext<Return>')
+vim.keymap.set('n', '<C-p>', ':bprev<Return>')
 
 -- Keep the old behaviour of 'Y' (yank line, now 'yy').
 vim.keymap.set('n', 'Y', 'Y')
@@ -47,3 +56,6 @@ vim.keymap.set('n', '<Leader>x', ':x<Return>')
 vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
+
+-- vim-buftabline: always show buffer list
+vim.g.buftabline_show = 2
