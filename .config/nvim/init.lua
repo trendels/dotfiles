@@ -57,9 +57,42 @@ vim.keymap.set('n', '<Leader>x', ':x<Return>')
 vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
+vim.keymap.set('n', '<Leader>c', ':cclose<Return>')
 
 -- Decrease idle timeout (for "cursor hold" events, sign column updates)
 vim.o.updatetime = 300  -- time in milliseconds
 
 -- vim-buftabline: always show buffer list
 vim.g.buftabline_show = 2
+
+-- nvim-lspconfig
+local on_attach = function(client, bufnr)
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    local bufopts = { noremap = true, silent = true, buffer = bufnr }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, bufopts)
+    vim.keymap.set('n', 'gS', vim.lsp.buf.workspace_symbol, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<space>wl', function()
+        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<space>f', function()
+        vim.lsp.buf.format({ async = true })
+    end, bufopts)
+    vim.keymap.set('n', '<space>ci', vim.lsp.buf.incoming_calls, bufopts)
+    vim.keymap.set('n', '<space>co', vim.lsp.buf.outgoing_calls, bufopts)
+    vim.keymap.set('n', '<space>co', vim.lsp.buf.outgoing_calls, bufopts)
+end
+local lsp_flags = { debounce_text_changes = 150 }
+local lspconfig = require('lspconfig')
+lspconfig.pyright.setup({on_attach = on_attach, flags = lsp_flags})
