@@ -18,7 +18,7 @@ vim.o.list = true
 vim.o.listchars='trail:•,nbsp:•,tab:⇥ '
 vim.o.showbreak='↳'
 
--- Keep the old behavour of 'Y' (yank line, now 'yy').
+-- Keep the old behaviour of 'Y' (yank line, now 'yy').
 vim.keymap.set('n', 'Y', 'Y')
 -- <Space> clears search result highlighting
 vim.keymap.set('n', '<Space>', ':nohlsearch<Return>', {silent = true})
