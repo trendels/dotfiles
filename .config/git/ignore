@@ -1,0 +1,5 @@
+# Global exclude patterns for git
+
+# direnv
+.envrc
+.direnv/

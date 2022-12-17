@@ -1,0 +1,9 @@
+[user]
+	name = Stanis Trendelenburg
+	email = stanis.trendelenburg@gmail.com
+[alias]
+	ci = commit -v
+	st = status
+	l = log --oneline --graph
+	co = checkout
+	ff = pull --ff-only
