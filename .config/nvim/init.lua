@@ -28,6 +28,9 @@ vim.o.hidden = true
 vim.keymap.set('n', '<C-n>', ':bnext<Return>')
 vim.keymap.set('n', '<C-p>', ':bprev<Return>')
 
+-- Don't add trailing newline to files that don't already have one
+vim.o.fixeol = false
+
 -- Keep the old behaviour of 'Y' (yank line, now 'yy').
 vim.keymap.set('n', 'Y', 'Y')
 -- <Space> clears search result highlighting
