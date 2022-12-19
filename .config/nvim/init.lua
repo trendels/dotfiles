@@ -52,6 +52,16 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 -- Set the color scheme
 vim.cmd.colorscheme('default')
 
+-- Restore previous cursor position when editing a file
+-- See https://stackoverflow.com/a/72939989
+vim.api.nvim_create_autocmd('BufReadPost', {
+    pattern = '*',
+    desc = 'Restore previous cursor position',
+    callback = function()
+        vim.api.nvim_exec('silent! normal! g`"zv', false)
+    end,
+})
+
 -- Shortcuts
 vim.g.mapleader = ','
 vim.keymap.set('n', '<Leader>w', ':w<Return>')
@@ -61,6 +71,9 @@ vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
 vim.keymap.set('n', '<Leader>c', ':cclose | lclose<Return>', {silent = true})
+
+-- ,dd inserts the current date as YYYY-MM-DD in insert mode
+vim.keymap.set('i', ',dd', 'strftime("%Y-%m-%d")', {expr = true})
 
 -- Decrease idle timeout (for "cursor hold" events, sign column updates)
 vim.o.updatetime = 300  -- time in milliseconds
