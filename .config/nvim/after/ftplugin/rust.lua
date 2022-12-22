@@ -1,2 +1,2 @@
 -- Filetype plugin for Rust
-vim.keymap.set('n', '<Leader>r', ':!cargo run<Return>')
+vim.keymap.set('n', '<Leader>r', ':!cargo run<Return>', {buffer = true})
