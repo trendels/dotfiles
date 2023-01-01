@@ -22,6 +22,9 @@ vim.o.list = true
 vim.o.listchars='trail:•,nbsp:•,tab:⇥ '
 vim.o.showbreak='↳'
 
+-- Open new vertical splits to the right
+vim.o.splitright = true
+
 -- Allow navigating away from buffers with unsaved changes
 vim.o.hidden = true
 -- Switch between buffers with Ctrl-n/Ctrl-p
@@ -46,6 +49,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     callback = function()
         vim.api.nvim_set_hl(0, 'LineNr', {ctermfg = 8})     -- Grey line numbers
         vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 8})    -- Grey 'listchars'
+        vim.api.nvim_set_hl(0, 'SpellBad', {cterm = {undercurl = true}, ctermfg = 1})    -- Grey 'listchars'
     end
 })
 
