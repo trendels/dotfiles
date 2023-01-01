@@ -49,7 +49,10 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     callback = function()
         vim.api.nvim_set_hl(0, 'LineNr', {ctermfg = 8})     -- Grey line numbers
         vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 8})    -- Grey 'listchars'
-        vim.api.nvim_set_hl(0, 'SpellBad', {cterm = {undercurl = true}, ctermfg = 1})    -- Grey 'listchars'
+        vim.api.nvim_set_hl(0, 'SpellBad', {cterm = {undercurl = true}, ctermfg = 'red'})
+        vim.api.nvim_set_hl(0, 'SpellCap', {cterm = {undercurl = true}, ctermfg = 'blue'})
+        vim.api.nvim_set_hl(0, 'SpellRare', {cterm = {undercurl = true}, ctermfg = 'magenta'})
+        vim.api.nvim_set_hl(0, 'SpellLocal', {cterm = {undercurl = true}, ctermfg = 'cyan'})
     end
 })
 
