@@ -22,3 +22,13 @@ then
 fi
 export PATH="$PATH:/opt/homebrew/opt/util-linux/bin"
 export PATH="$PATH:/opt/homebrew/opt/util-linux/sbin"
+
+# Setup git prompt
+source ~/.local/share/git/git-prompt.sh
+export GIT_PS1_SHOWDIRTYSTATE=1 # show unstaged (*) and staged (+) changes
+export GIT_PS1_SHOWSTASHSTATE=1 # show stashed changes ($)
+export GIT_PS1_SHOWUNTRACKEDFILES=1 # show untracked files (%) (can be slow)
+export GIT_PS1_SHOWUPSTREAM="verbose" # show divergence from upstream as +/-
+export GIT_PS1_STATESEPARATOR=" "
+precmd () { __git_ps1 "%n@%m %1~" " %# " }
+
