@@ -30,5 +30,5 @@ export GIT_PS1_SHOWSTASHSTATE=1 # show stashed changes ($)
 export GIT_PS1_SHOWUNTRACKEDFILES=1 # show untracked files (%) (can be slow)
 export GIT_PS1_SHOWUPSTREAM="verbose" # show divergence from upstream as +/-
 export GIT_PS1_STATESEPARATOR=" "
-precmd () { __git_ps1 "%n@%m %1~" " %# " }
+precmd () { __git_ps1 "%n@%m %1~" " %# " " ⇌(%s)"}
 
