@@ -27,9 +27,16 @@ vim.o.splitright = true
 
 -- Allow navigating away from buffers with unsaved changes
 vim.o.hidden = true
+
 -- Switch between buffers with Ctrl-n/Ctrl-p
 vim.keymap.set('n', '<C-n>', ':bnext<Return>')
 vim.keymap.set('n', '<C-p>', ':bprev<Return>')
+
+-- Switch between windows with Ctrl-h/j/k/l
+vim.keymap.set('n', '<C-h>', '<C-W>h')
+vim.keymap.set('n', '<C-j>', '<C-W>j')
+vim.keymap.set('n', '<C-k>', '<C-W>k')
+vim.keymap.set('n', '<C-l>', '<C-W>l')
 
 -- Don't add trailing newline to files that don't already have one
 vim.o.fixeol = false
@@ -53,6 +60,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
         vim.api.nvim_set_hl(0, 'SpellCap', {cterm = {undercurl = true}, ctermfg = 'blue'})
         vim.api.nvim_set_hl(0, 'SpellRare', {cterm = {undercurl = true}, ctermfg = 'magenta'})
         vim.api.nvim_set_hl(0, 'SpellLocal', {cterm = {undercurl = true}, ctermfg = 'cyan'})
+        -- buffer opened in another window
+        vim.api.nvim_set_hl(0, 'BufTabLineActive', {ctermbg = 0, ctermfg = 'darkcyan'})
     end
 })
 
