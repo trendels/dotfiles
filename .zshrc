@@ -32,3 +32,8 @@ export GIT_PS1_SHOWUPSTREAM="verbose" # show divergence from upstream as +/-
 export GIT_PS1_STATESEPARATOR=" "
 precmd () { __git_ps1 "%n@%m %1~" " %# " " ⇌(%s)"}
 
+# Configure zsh
+export HISTSIZE=10000
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt autocd
