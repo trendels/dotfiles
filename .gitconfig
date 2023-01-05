@@ -7,3 +7,5 @@
 	l = log --oneline --graph
 	co = checkout
 	ff = pull --ff-only
+[core]
+	pager = less -FRX
