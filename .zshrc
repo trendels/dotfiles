@@ -30,7 +30,16 @@ export GIT_PS1_SHOWSTASHSTATE=1 # show stashed changes ($)
 export GIT_PS1_SHOWUNTRACKEDFILES=1 # show untracked files (%) (can be slow)
 export GIT_PS1_SHOWUPSTREAM="verbose" # show divergence from upstream as +/-
 export GIT_PS1_STATESEPARATOR=" "
-precmd () { __git_ps1 "%n@%m %1~" " %# " " ⇌(%s)"}
+
+precmd () {
+    # Setup terminal title
+    title='%n@%m:%~'
+    print -Pn "\e]2;${title}\a" # set window name
+    print -Pn "\e]1;${title}\a" # set tab name
+
+    # Setup git prompt
+    __git_ps1 "%n@%m %1~" " %# " " ⇌(%s)"
+}
 
 # Configure zsh
 export HISTSIZE=10000
