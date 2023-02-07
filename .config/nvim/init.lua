@@ -25,6 +25,9 @@ vim.o.showbreak='↳'
 -- Open new vertical splits to the right
 vim.o.splitright = true
 
+-- Scroll when one line away from the edge of the window
+vim.o.scrolloff = 1
+
 -- Allow navigating away from buffers with unsaved changes
 vim.o.hidden = true
 
@@ -54,8 +57,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     group = augroup,
     desc = 'Apply overrides',
     callback = function()
-        vim.api.nvim_set_hl(0, 'LineNr', {ctermfg = 8})     -- Grey line numbers
-        vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 8})    -- Grey 'listchars'
+        vim.api.nvim_set_hl(0, 'LineNr', {ctermfg = 240})  -- Dark gray line numbers
+        vim.api.nvim_set_hl(0, 'NonText', {ctermfg = 240}) -- Dark gray 'listchars'
         vim.api.nvim_set_hl(0, 'SpellBad', {cterm = {undercurl = true}, ctermfg = 'red'})
         vim.api.nvim_set_hl(0, 'SpellCap', {cterm = {undercurl = true}, ctermfg = 'blue'})
         vim.api.nvim_set_hl(0, 'SpellRare', {cterm = {undercurl = true}, ctermfg = 'magenta'})
