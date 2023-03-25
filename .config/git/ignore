@@ -1,5 +1,8 @@
 # Global exclude patterns for git
 
+# macOS
+.DS_Store
+
 # direnv
 .envrc
 .direnv/
