@@ -49,6 +49,24 @@ vim.keymap.set('n', 'Y', 'Y')
 -- <Space> clears search result highlighting
 vim.keymap.set('n', '<Space>', ':nohlsearch<Return>', {silent = true})
 
+-- only complete to longest common prefix, don't open preview buffer
+vim.opt.completeopt:append('longest')
+vim.opt.completeopt:remove('preview')
+
+-- Trigger omni completion with Ctrl-Space
+vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', {noremap = true})
+-- On MacOS, Control-Space is mapped to "select previous input source" by
+-- default. The shortcut needs to be disabled in System Preferences before it
+-- can be mapped here.
+-- These lines may be needed on some terminals that insert NUL for Ctrl-Space:
+--vim.keymap.set('i', '<Nul>', '<C-Space>')
+--vim.keymap.set('s', '<Nul>', '<C-Space>')
+
+-- Use Return to select entry in completion menu regardless of state
+vim.keymap.set('i', '<Return>', function ()
+    return vim.fn.pumvisible() == 1 and '<C-y>' or '<Return>'
+end, { expr = true, noremap = true })
+
 -- Apply overrides for the default color scheme
 local augroup = vim.api.nvim_create_augroup('colorscheme_overrides', {clear = true})
 
