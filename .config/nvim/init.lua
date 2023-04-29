@@ -83,6 +83,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
         vim.api.nvim_set_hl(0, 'SpellLocal', {cterm = {undercurl = true}, ctermfg = 'cyan'})
         -- buffer opened in another window
         vim.api.nvim_set_hl(0, 'BufTabLineActive', {ctermbg = 0, ctermfg = 'darkcyan'})
+        -- dark red color for diagnostics errors that is readable on popup window background
+        vim.api.nvim_set_hl(0, 'DiagnosticError', {ctermfg = 124})
     end
 })
 
@@ -130,7 +132,8 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, bufopts)
     vim.keymap.set('n', 'gS', vim.lsp.buf.workspace_symbol, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-    vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<space><space>', vim.diagnostic.open_float, bufopts)
+    vim.keymap.set('n', '<space>k', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
     vim.keymap.set('n', '<space>wl', function()
