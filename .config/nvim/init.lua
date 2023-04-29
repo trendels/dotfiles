@@ -62,10 +62,11 @@ vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', {noremap = true})
 --vim.keymap.set('i', '<Nul>', '<C-Space>')
 --vim.keymap.set('s', '<Nul>', '<C-Space>')
 
--- Use Return to select entry in completion menu regardless of state
-vim.keymap.set('i', '<Return>', function ()
-    return vim.fn.pumvisible() == 1 and '<C-y>' or '<Return>'
-end, { expr = true, noremap = true })
+-- Use Space to select entry in completion menu regardless of state
+vim.keymap.set('i', '<Space>', function ()
+    -- Extra <C-]> is needed to un-break abbreviations (See :help abbreviations)
+    return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-]><Space>'
+end, { expr = true })
 
 -- Apply overrides for the default color scheme
 local augroup = vim.api.nvim_create_augroup('colorscheme_overrides', {clear = true})
