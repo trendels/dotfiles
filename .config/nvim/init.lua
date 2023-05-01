@@ -86,6 +86,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
         vim.api.nvim_set_hl(0, 'BufTabLineActive', {ctermbg = 0, ctermfg = 'darkcyan'})
         -- dark red color for diagnostics errors that is readable on popup window background
         vim.api.nvim_set_hl(0, 'DiagnosticError', {ctermfg = 124})
+        vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', {link = 'Ignore'})
     end
 })
 
@@ -151,9 +152,24 @@ local on_attach = function(client, bufnr)
     end, bufopts)
     vim.keymap.set('n', '<space>ci', vim.lsp.buf.incoming_calls, bufopts)
     vim.keymap.set('n', '<space>co', vim.lsp.buf.outgoing_calls, bufopts)
-    vim.keymap.set('n', '<space>co', vim.lsp.buf.outgoing_calls, bufopts)
 end
+
 local lsp_flags = { debounce_text_changes = 150 }
 local lspconfig = require('lspconfig')
-lspconfig.pyright.setup({on_attach = on_attach, flags = lsp_flags})
+
+lspconfig.pyright.setup({
+    on_attach = on_attach,
+    flags = lsp_flags,
+    -- Don't display diagnostic text for unused function arguments
+    -- See https://github.com/microsoft/pyright/issues/1118#issuecomment-1481194616
+    handlers = {
+        ['textDocument/publishDiagnostics'] = vim.lsp.with(
+            vim.lsp.diagnostic.on_publish_diagnostics, {
+                virtual_text = false,
+                signs = { severity = { min = vim.diagnostic.severity.INFO } },
+            }
+        )
+    },
+})
+
 lspconfig.rust_analyzer.setup({on_attach = on_attach, flags = lsp_flags})
