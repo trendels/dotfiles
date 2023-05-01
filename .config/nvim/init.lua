@@ -121,6 +121,9 @@ vim.o.updatetime = 300  -- time in milliseconds
 -- vim-buftabline: always show buffer list
 vim.g.buftabline_show = 2
 
+-- make directory listing (netrw) buffers better behaved (close when file is selected)
+vim.g.netrw_fastbrowse = 0
+
 -- nvim-lspconfig
 local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
