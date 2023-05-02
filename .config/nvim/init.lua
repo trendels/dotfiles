@@ -53,8 +53,6 @@ vim.keymap.set('n', '<Space>', ':nohlsearch<Return>', {silent = true})
 vim.opt.completeopt:append('longest')
 vim.opt.completeopt:remove('preview')
 
--- Trigger omni completion with Ctrl-Space
-vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', {noremap = true})
 -- On MacOS, Control-Space is mapped to "select previous input source" by
 -- default. The shortcut needs to be disabled in System Preferences before it
 -- can be mapped here.
@@ -62,10 +60,28 @@ vim.keymap.set('i', '<C-Space>', '<C-x><C-o>', {noremap = true})
 --vim.keymap.set('i', '<Nul>', '<C-Space>')
 --vim.keymap.set('s', '<Nul>', '<C-Space>')
 
--- Use Space to select entry in completion menu regardless of state
+-- Trigger omni completion with Ctrl-Space
+-- When the completion menu is open, Ctrl-Space selects the next entry
+vim.keymap.set('i', '<C-Space>', function ()
+    return vim.fn.pumvisible() == 1 and '<C-n>' or '<C-x><C-o>'
+end, { expr = true, noremap = True })
+
+-- When the completion menu is open, Tab selects the next entry
+vim.keymap.set('i', '<Tab>', function ()
+    -- Extra <C-]> is needed to un-break abbreviations (See :help abbreviations)
+    return vim.fn.pumvisible() == 1 and '<C-n>' or '<C-]><Tab>'
+end, { expr = true })
+
+-- When the completion menu is open, Space accepts the current entry regardless of state
 vim.keymap.set('i', '<Space>', function ()
     -- Extra <C-]> is needed to un-break abbreviations (See :help abbreviations)
     return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-]><Space>'
+end, { expr = true })
+
+-- When the completion menu is open, Return accepts the current entry
+vim.keymap.set('i', '<Return>', function ()
+    -- Extra <C-]> is needed to un-break abbreviations (See :help abbreviations)
+    return vim.fn.pumvisible() == 1 and '<C-y>' or '<C-]><Return>'
 end, { expr = true })
 
 -- Apply overrides for the default color scheme
