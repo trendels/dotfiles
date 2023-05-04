@@ -1,7 +1,8 @@
 # Setup emacs keybindings (e.g. Ctrl-A/Ctrl-E for beginning/end of line)
 bindkey -e
 
-alias cfg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+# Changed to a shell wrapper to fix zsh completion, see ~/bin/cfg
+#alias cfg='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 alias ax='git annex'
 alias ..='cd ..'
