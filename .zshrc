@@ -10,6 +10,8 @@ alias ll='ls -lh'
 alias la='ls -lha'
 alias tree='tree -A'
 alias ack='rg'
+alias grep='grep --color=auto'
+alias vicfg='nvim ~/.config/nvim/init.lua'
 
 # Configure completions for homebrew packages
 # See https://docs.brew.sh/Shell-Completion
