@@ -14,3 +14,6 @@ PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
 export PATH
 
 export PATH="${HOME}/bin:${PATH}"
+
+source "$HOME/.cargo/env"
+source "$HOME/.rye/env"

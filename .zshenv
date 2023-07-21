@@ -1,4 +1,3 @@
-. "$HOME/.cargo/env"
 export CLICOLOR=1
 export HOMEBREW_NO_EMOJI=1
 export LESS="-iM"
