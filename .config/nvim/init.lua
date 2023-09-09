@@ -47,15 +47,18 @@ vim.o.fixeol = false
 -- Keep the old behaviour of 'Y' (yank line, now 'yy').
 vim.keymap.set('n', 'Y', 'Y')
 -- <Space> clears search result highlighting
-vim.keymap.set('n', '<Space>', ':nohlsearch<Return>', {silent = true})
+--vim.keymap.set('n', '<Space>', ':nohlsearch<Return>', {silent = true})
+-- Conflicts with space as prefix for LSP keybindings and autocompletion (see below).
+-- Also not needed anymore thanks to the vim-cool plugin.
 
 -- only complete to longest common prefix, don't open preview buffer
 vim.opt.completeopt:append('longest')
 vim.opt.completeopt:remove('preview')
 
--- On MacOS, Control-Space is mapped to "select previous input source" by
--- default. The shortcut needs to be disabled in System Preferences before it
--- can be mapped here.
+-- On MacOS, Control-Space is mapped to "select previous input source" or "open
+-- and close the spotlight window" by default. The shortcut needs to be
+-- disabled in System Preferences before it can be mapped here.
+--
 -- These lines may be needed on some terminals that insert NUL for Ctrl-Space:
 --vim.keymap.set('i', '<Nul>', '<C-Space>')
 --vim.keymap.set('s', '<Nul>', '<C-Space>')
@@ -102,7 +105,8 @@ vim.api.nvim_create_autocmd('ColorScheme', {
         vim.api.nvim_set_hl(0, 'BufTabLineActive', {ctermbg = 0, ctermfg = 'darkcyan'})
         -- dark red color for diagnostics errors that is readable on popup window background
         vim.api.nvim_set_hl(0, 'DiagnosticError', {ctermfg = 124})
-        vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', {link = 'Ignore'})
+        -- slightly darker text only for unused arguments
+        vim.api.nvim_set_hl(0, 'DiagnosticUnnecessary', {ctermfg = 244})
     end
 })
 
@@ -128,6 +132,7 @@ vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
 vim.keymap.set('n', '<Leader>c', ':cclose | lclose<Return>', {silent = true})
+vim.keymap.set('n', '<Leader>d', ':bdelete<Return>')
 
 -- ,dd inserts the current date as YYYY-MM-DD in insert mode
 vim.keymap.set('i', ',dd', 'strftime("%Y-%m-%d")', {expr = true})
@@ -153,6 +158,9 @@ local on_attach = function(client, bufnr)
     vim.keymap.set('n', 'gs', vim.lsp.buf.document_symbol, bufopts)
     vim.keymap.set('n', 'gS', vim.lsp.buf.workspace_symbol, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', '<space>q', function()
+        vim.diagnostic.setloclist({ severity = { min = vim.diagnostic.severity.INFO } })
+    end, bufopts)
     vim.keymap.set('n', 'd[', function()
         vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.INFO } })
     end , bufopts)
