@@ -6,6 +6,8 @@ bindkey -e
 alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'
 alias ax='git annex'
 alias ..='cd ..'
+alias cp='cp -i'
+alias mv='mv -i'
 alias ls='ls -D "%Y-%m-%d %H:%M"'
 alias ll='ls -lh'
 alias la='ls -lha'
@@ -46,6 +48,7 @@ precmd () {
 
 # Configure zsh
 export HISTSIZE=10000
+export SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt autocd
