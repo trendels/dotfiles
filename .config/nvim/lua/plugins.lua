@@ -4,7 +4,10 @@
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim' -- Manage packer itself
   use 'ap/vim-buftabline'
-  --use 'airblade/vim-gitgutter' -- TODO needs some configuration to be useable (color scheme)
+  --use 'airblade/vim-gitgutter'
+  --use 'lewis6991/gitsigns.nvim'
   use 'neovim/nvim-lspconfig'
   use 'fatih/vim-go'
+  use 'imsnif/kdl.vim'
+  use 'romainl/vim-cool'
 end)
