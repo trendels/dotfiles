@@ -1,6 +1,10 @@
 {
     "\U00A7" = { /* § is compose key (in karabiner: "non_us_backspace") */
-        "\U00A7" = ("insertText:", ""); /* debounce (for iterm2) */
+        /* Fixes for iterm2 */
+        /* Hitting the compose key twice should not insert "§§" */
+        "\U00A7" = ("insertText:", "");
+        /* Keys that stop compose should not insert "§" (only forks for Tab unfortunately, not for Enter or Arrow Keys */
+        "\U0009" = ("insertText:", "\U0009"); /* Tab */
         "\U0020" = {
             "\U0020" = ("insertText:", "\U00A0"); /* Compose, SPACE, SPACE: NO-BREAK SPACE */
             "\U0027" = ("insertText:", "\U0027"); /* Compose, SPACE, APOSTROPHE: APOSTROPHE */
