@@ -1,0 +1,11 @@
+[user]
+name = "Stanis Trendelenburg"
+email = "stanis.trendelenburg@gmail.com"
+
+# Show the minimal amount of characters for change and commit IDs
+[template-aliases]
+'format_short_id(id)' = 'id.shortest()'
+
+[aliases]
+l = ["log"]
+la = ['log', '-r', 'all()']
