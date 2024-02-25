@@ -16,6 +16,9 @@ alias ack='rg'
 alias grep='grep --color=auto'
 alias vicfg='nvim ~/.config/nvim/init.lua'
 
+# See https://rye-up.com/guide/installation/#shell-completion
+FPATH="$HOME/.zfunc:${FPATH}"
+
 # Configure completions for homebrew packages
 # See https://docs.brew.sh/Shell-Completion
 if type brew &>/dev/null
