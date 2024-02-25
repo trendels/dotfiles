@@ -52,3 +52,6 @@ export SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt autocd
+
+# Setup direnv
+eval "$(direnv hook zsh)"
