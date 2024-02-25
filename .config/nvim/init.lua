@@ -131,8 +131,10 @@ vim.keymap.set('n', '<Leader>x', ':x<Return>')
 vim.keymap.set('n', '<Leader>s', ':set invspell<Return>')
 vim.keymap.set('n', '<Leader>p', ':set invpaste<Return>')
 vim.keymap.set('n', '<Leader>m', ':!make<Return>')
+vim.keymap.set('n', '<Leader>j', ':!just<Return>')
 vim.keymap.set('n', '<Leader>c', ':cclose | lclose<Return>', {silent = true})
 vim.keymap.set('n', '<Leader>d', ':bdelete<Return>')
+vim.keymap.set('n', '<Leader>f', ':FZF<Return>')
 
 -- ,dd inserts the current date as YYYY-MM-DD in insert mode
 vim.keymap.set('i', ',dd', 'strftime("%Y-%m-%d")', {expr = true})

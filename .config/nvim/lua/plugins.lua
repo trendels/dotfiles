@@ -10,4 +10,7 @@ return require('packer').startup(function(use)
   use 'fatih/vim-go'
   use 'imsnif/kdl.vim'
   use 'romainl/vim-cool'
+  use 'junegunn/fzf'
+  use 'NoahTheDuke/vim-just'
+  use 'vim-pandoc/vim-pandoc-syntax'
 end)
