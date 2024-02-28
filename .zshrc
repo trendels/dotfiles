@@ -28,6 +28,10 @@ then
   autoload -Uz compinit
   compinit
 fi
+
+# Load dynamic completions
+source <(jj util completion zsh)
+
 export PATH="$PATH:/opt/homebrew/opt/util-linux/bin"
 export PATH="$PATH:/opt/homebrew/opt/util-linux/sbin"
 
