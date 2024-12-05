@@ -16,4 +16,3 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 
 source "$HOME/.cargo/env"
-source "$HOME/.rye/env"
